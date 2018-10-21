@@ -1,0 +1,21 @@
+---
+- hosts: all
+  remote_user: "{{ target_user }}"
+  tasks:
+    # - name: Upgrade all packages to the latest version
+    #   apt:
+    #     name: "*"
+    #     state: latest
+    #   become: True
+    # - name: Update all packages to the latest version
+    #   apt:
+    #     upgrade: dist
+    #   become: True
+    # - name: update *
+    #   command: apt-get update
+    #   become: True
+    - fetch:
+        src: /home/pi/kodi.zip
+        dest: kodi.zip
+        flat: True
+      become: True

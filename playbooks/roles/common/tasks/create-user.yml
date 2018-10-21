@@ -20,26 +20,26 @@
         key: "{{ lookup('file', '/credentials/ssh/id_rsa.pub') }}"
         state: present
       become: yes
-    - name: Disable Password Authentication
-      lineinfile:
-        dest=/etc/ssh/sshd_config
-        regexp='^PasswordAuthentication'
-        line="PasswordAuthentication no"
-        state=present
-        backup=yes
-      become: yes
-      notify:
-        - restart ssh
-    - name: Disable Root Login
-      lineinfile:
-        dest=/etc/ssh/sshd_config
-        regexp='^PermitRootLogin'
-        line="PermitRootLogin no"
-        state=present
-        backup=yes
-      become: yes
-      notify:
-        - restart ssh
+    # - name: Disable Password Authentication
+    #   lineinfile:
+    #     dest=/etc/ssh/sshd_config
+    #     regexp='^PasswordAuthentication'
+    #     line="PasswordAuthentication no"
+    #     state=present
+    #     backup=yes
+    #   become: yes
+    #   notify:
+    #     - restart ssh
+    # - name: Disable Root Login
+    #   lineinfile:
+    #     dest=/etc/ssh/sshd_config
+    #     regexp='^PermitRootLogin'
+    #     line="PermitRootLogin no"
+    #     state=present
+    #     backup=yes
+    #   become: yes
+    #   notify:
+    #     - restart ssh
 
   handlers:
     - name: restart ssh
