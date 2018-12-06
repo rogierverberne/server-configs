@@ -1,0 +1,33 @@
+---
+- hosts: all
+  remote_user: "{{ target_user }}"
+  tasks:
+    - name: Install OpenVPN
+      apt: name={{item}} state=present
+      with_items:
+        - openvpn
+    - name: copy .ovpn file
+      copy:
+        src: "{{credentials_dir}}/ovpn/ua-2.ovpn"
+        dest: /etc/openvpn/ua-2.conf
+    - name: copy login.conf
+      copy:
+        src: "{{credentials_dir}}/ovpn/login.conf"
+        dest: /etc/openvpn/login.conf
+   
+    # openvpn --daemon --config /etc/openvpn/rogier.conf --dev tun1
+    - name: Enable autostart
+      lineinfile:
+        dest=/etc/default/openvpn
+        regexp='^AUTOSTART'
+        line='AUTOSTART="ua-2"'
+        state=present
+        backup=yes
+    - name: Start service openvpn, if not started
+      service:
+        name: openvpn
+        state: started
+    - name: Install kubeadm
+      command: echo "openvpn --daemon --config /etc/openvpn/rogier.conf --dev tun1 &" >> /etc/init.d/basvpn.sh
+
+

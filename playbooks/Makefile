@@ -13,11 +13,15 @@ prep:
 	
 .PHONY: create-user
 create-user:
-	ansible-playbook -i /playbooks/hosts /playbooks/roles/common/tasks/create-user.yml --ask-pass --ask-become-pass
+	ansible-playbook -i /playbooks/hosts /playbooks/roles/common/tasks/create-user.yml --ask-pass
 
 .PHONY: kodi-install
 kodi-install: 
 	ansible-playbook -i /playbooks/hosts /playbooks/roles/kodi/tasks/install.yml
+
+.PHONY: ovpn
+ovpn:
+	ansible-playbook -i /playbooks/hosts /playbooks/roles/ovpn/tasks/join.yml
 
 .PHONY: fetch
 fetch: 

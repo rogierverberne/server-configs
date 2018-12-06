@@ -1,3 +1,5 @@
 ---
 target_user: rogier
+ansible_become: True
+credentials_dir: /credentials
 home_dir: /home/{{ansible_ssh_user}}

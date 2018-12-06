@@ -2,15 +2,6 @@
 - hosts: all
   remote_user: "{{ target_user }}"
   tasks:
-    # - name: Upgrade all packages to the latest version
-    #   apt:
-    #     name: "*"
-    #     state: latest
-    #   become: True
-    # - name: Update all packages to the latest version
-    #   apt:
-    #     upgrade: dist
-    #   become: True
     - name: update *
       command: apt-get update
       become: True
@@ -47,24 +38,24 @@
     #     url: http://mavericktv.net/mavrepo/repository.maverickrepo-3.5.zip
     #     dest: /home/pi/repository.maverickrepo-3.5.zip
     #   become: True
-    - name: put kodi.zip settings
-      copy:
-        src: kodi.zip
-        dest: /tmp/kodi.zip
-      become: True
-    - name: mv kodi.zip
-      command: mv /tmp/kodi.zip /home/pi/kodi.zip 
-      become: True
-    - name: clear settings
-      command: rm -rf /home/pi/.kodi 
-      become: True
-    - name: Unarchive a file that is already on the remote machine
-      unarchive:
-        src: /home/pi/kodi.zip
-        dest: /home/pi/
-        remote_src: yes
-      become: True
-    - name: chown settings
-      command: chown -R pi:pi /home/pi/.kodi
-      become: True
+    # - name: put kodi.zip settings
+    #   copy:
+    #     src: kodi.zip
+    #     dest: /tmp/kodi.zip
+    #   become: True
+    # - name: mv kodi.zip
+    #   command: mv /tmp/kodi.zip /home/pi/kodi.zip 
+    #   become: True
+    # - name: clear settings
+    #   command: rm -rf /home/pi/.kodi 
+    #   become: True
+    # - name: Unarchive a file that is already on the remote machine
+    #   unarchive:
+    #     src: /home/pi/kodi.zip
+    #     dest: /home/pi/
+    #     remote_src: yes
+    #   become: True
+    # - name: chown settings
+    #   command: chown -R pi:pi /home/pi/.kodi
+    #   become: True
     

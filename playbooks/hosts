@@ -1,5 +1,5 @@
 [raspis]
-172.22.104.233
+192.168.2.9
 
 [raspis:vars]
 ansible_ssh_private_key_file=~/.ssh/id_rsa
