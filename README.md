@@ -7,7 +7,7 @@
 * id_rsa and id_rsa.pub in ```/credentials/ssh/``` (generate them yourself)
 
 ## How to run
-1. Run the control (Ansible) client with:
+1. Run the control (Ansible) client with (in Powershell or cmd.exe with docker-for-windows running):
     ```powershell
     .\run.ps1
     make all
