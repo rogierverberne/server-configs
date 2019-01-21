@@ -4,14 +4,15 @@ A personal collection of server configs with Ansible, enjoy!
 
 ## Prerequisites
 * Docker for Windows (not Docker Toolbox)
-* Hyper-V enabled (for testing only)
+* Hyper-V enabled
 * id_rsa and id_rsa.pub in ```/credentials/ssh/``` (generate them yourself)
 
 ## How to run
-Run the control (Ansible) client with:
-```powershell
-.\run.ps1
-```
+1. Run the control (Ansible) client with:
+    ```powershell
+    .\run.ps1
+    ```
+2. Manually do all the changes described in [CHANGELOG-ROGIER.md](CHANGELOG-ROGIER.md)
 
 ## Core configuration
 The core configuration can be found at ```/playbooks/Makefile``` which you should run in the Ansible control container by:
