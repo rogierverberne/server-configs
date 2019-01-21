@@ -1,0 +1,19 @@
+---
+- hosts: all
+  remote_user: "{{ target_user }}"
+  tasks:
+    - name: Copy SafeShutdown.py.j2
+      template: src=SafeShutdown.py.j2 dest=/opt/RetroFlag/SafeShutdown.py mode=0755  
+    - name: Copy install.sh.j2
+      template: src=install.sh.j2 dest=/opt/RetroFlag/install.sh mode=0755  
+    - name: Install safe-shutdown script
+      shell: 'bash /opt/RetroFlag/install.sh'
+      args:
+          executable: /bin/bash
+      async: 15
+      poll: 5
+      ignore_errors: yes
+    - name: Wait for system to become reachable again
+      wait_for_connection:
+          delay: 30
+          timeout: 10

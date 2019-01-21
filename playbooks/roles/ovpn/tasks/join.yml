@@ -6,14 +6,23 @@
       apt: name={{item}} state=present
       with_items:
         - openvpn
+    - name: Include openvpn credentials
+      include_vars:
+        file: "{{credentials_dir}}/ovpn/pw-goosevpn.yaml"
+    - name: Copy login.conf
+      template: src=login.conf.j2 dest=/etc/openvpn/login.conf mode=0755
     - name: copy .ovpn file
       copy:
         src: "{{credentials_dir}}/ovpn/ua-2.ovpn"
         dest: /etc/openvpn/ua-2.conf
-    - name: copy login.conf
-      copy:
-        src: "{{credentials_dir}}/ovpn/login.conf"
-        dest: /etc/openvpn/login.conf
+    - name: Append login.conf to certificate
+      shell: 'echo "" >> /etc/openvpn/ua-2.conf && echo "auth-user-pass /etc/openvpn/login.conf" >> /etc/openvpn/ua-2.conf'
+      args:
+          executable: /bin/bash
+    # - name: copy login.conf
+    #   copy:
+    #     src: "{{credentials_dir}}/ovpn/login.conf"
+    #     dest: /etc/openvpn/login.conf
    
     # openvpn --daemon --config /etc/openvpn/rogier.conf --dev tun1
     - name: Enable autostart
@@ -27,7 +36,7 @@
       service:
         name: openvpn
         state: started
-    - name: Install kubeadm
-      command: echo "openvpn --daemon --config /etc/openvpn/rogier.conf --dev tun1 &" >> /etc/init.d/basvpn.sh
+    # - name: Install bas remote accesss
+    #   command: echo "openvpn --daemon --config /etc/openvpn/rogier.conf --dev tun1 &" >> /etc/init.d/basvpn.sh
 
 

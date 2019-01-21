@@ -18,18 +18,18 @@
         - kodi-pvr-hts
         # - kodi-peripheral-joystick
       become: True
-    - name: enable autostart #TODO: fix
-      command: echo "@kodi" >>   /home/pi/.config/lxsession/LXDE-pi/autostart
-      become: True
+    # - name: enable autostart #TODO: fix
+    #   command: echo "@kodi" >>   /home/pi/.config/lxsession/LXDE-pi/autostart
+    #   become: True
     - name: Ensure group "input" exists
       group:
         name: input
         system: True
         state: present
       become: True
-    - name: add input to rules.d
-      command: echo "SUBSYSTEM==input, GROUP=input, MODE=0660 KERNEL==tty[0-9]*, GROUP=tty, MODE=0660" >> /etc/udev/rules.d/99-input.rules
-      become: True
+    # - name: add input to rules.d
+    #   command: echo "SUBSYSTEM==input, GROUP=input, MODE=0660 KERNEL==tty[0-9]*, GROUP=tty, MODE=0660" >> /etc/udev/rules.d/99-input.rules
+    #   become: True
     - name: enable service
       command: systemctl unmask kodi.service && systemctl enable kodi.service
       become: True
