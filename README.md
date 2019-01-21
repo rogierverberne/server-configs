@@ -1,5 +1,4 @@
-# server-configs
-A personal collection of server configs with Ansible, enjoy!
+# Custom Kodi / Retro Pi
 
 
 ## Prerequisites
@@ -11,6 +10,7 @@ A personal collection of server configs with Ansible, enjoy!
 1. Run the control (Ansible) client with:
     ```powershell
     .\run.ps1
+    make all
     ```
 2. Manually do all the changes described in [CHANGELOG-ROGIER.md](CHANGELOG-ROGIER.md)
 
