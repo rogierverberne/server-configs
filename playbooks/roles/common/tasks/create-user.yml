@@ -20,13 +20,13 @@
         key: "{{ lookup('file', '/credentials/ssh/id_rsa.pub') }}"
         state: present
       become: yes
-    - name: Change autologin user to {{ target_user }}
-      lineinfile:
-        dest=/etc/lightdm/lightdm.conf
-        regexp='^autologin-user'
-        line="autologin-user={{ target_user }}"
-        state=present
-        backup=yes
+    # - name: Change autologin user to {{ target_user }}
+    #   lineinfile:
+    #     dest=/etc/lightdm/lightdm.conf
+    #     regexp='^autologin-user'
+    #     line="autologin-user={{ target_user }}"
+    #     state=present
+    #     backup=yes
     # - name: Disable Password Authentication
     #   lineinfile:
     #     dest=/etc/ssh/sshd_config

@@ -1,15 +1,10 @@
  
 #Based on: https://github.com/ramontayag/rpi-playbooks
 export ANSIBLE_HOST_KEY_CHECKING = False
-all: prep create-user kodi-install ovpn retropi
+all: create-user kodi-install ovpn retropi
 
 
 ##### Init Setup #####
-.PHONY: prep
-prep:
-	mkdir -p ~/.ssh 
-	cp /credentials/ssh/id_rsa ~/.ssh/id_rsa
-	chmod 600 ~/.ssh/id_rsa
 	
 .PHONY: create-user
 create-user:
